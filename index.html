@@ -16,16 +16,7 @@
         const appScheme = "tiktok://";  // または "tiktoklite://"
         const appStoreURL = "https://apps.apple.com/jp/app/tiktok-lite/id6447160980"; // TikTok Lite の App Store リンク
 
-        // タイムアウトで App Store に遷移
-        const now = Date.now();
-        setTimeout(function () {
-          // 1.5秒以内に戻ってこなければ未インストールとみなす
-          if (Date.now() - now < 2000) {
-            window.location.href = appStoreURL;
-          }
-        }, 1500);
 
-        // アプリ起動を試みる
         window.location.href = appScheme;
       } else {
         document.body.innerHTML += "<p>この機能は iOS デバイスでのみサポートされています。</p>";
