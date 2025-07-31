@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>TikTok Lite 起動</title>
+</head>
+<body>
+  <h1>TikTok Lite を開こうとしています...</h1>
+
+  <script>
+    (function () {
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      if (isIOS) {
+        // アプリスキーム（tiktok:// で通常TikTokが起動します。Lite版が同じであればそのままでOK）
+        const appScheme = "tiktoklite://";  // または "tiktoklite://"
+        const appStoreURL = "https://apps.apple.com/jp/app/tiktok-lite/id6447160980"; // TikTok Lite の App Store リンク
+
+        // タイムアウトで App Store に遷移
+        const now = Date.now();
+        setTimeout(function () {
+          // 1.5秒以内に戻ってこなければ未インストールとみなす
+          if (Date.now() - now < 2000) {
+            window.location.href = appStoreURL;
+          }
+        }, 1500);
+
+        // アプリ起動を試みる
+        window.location.href = appScheme;
+      } else {
+        document.body.innerHTML += "<p>この機能は iOS デバイスでのみサポートされています。</p>";
+      }
+    })();
+  </script>
+</body>
+</html>
